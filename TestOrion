@@ -624,7 +624,6 @@ function OrionLib:MakeWindow(WindowConfig)
 					Size = UDim2.new(0, 1, 1, 0),
 					Position = UDim2.new(0.5, 0, 0, 0)
 				}), "Stroke"), 
-				CloseBtn,
 				MinimizeBtn
 			}), "Second"), 
 		}),
@@ -643,16 +642,7 @@ function OrionLib:MakeWindow(WindowConfig)
 
 	MakeDraggable(DragPoint, MainWindow)
 
-	AddConnection(CloseBtn.MouseButton1Up, function()
-		MainWindow.Visible = false
-		UIHidden = true
-		OrionLib:MakeNotification({
-			Name = "Выключение...",
-			Content = "Чит закрывается... Подождите",
-			Time = 5
-		})
-		WindowConfig.CloseCallback()
-	end)
+	
 
 	AddConnection(UserInputService.InputBegan, function(Input)
 		if Input.KeyCode == Enum.KeyCode.RightShift and UIHidden then
